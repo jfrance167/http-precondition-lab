@@ -1,0 +1,940 @@
+{
+  "version": 1,
+  "assumptions": [
+    "synthetic normalized origin snapshot; declared baseline checks",
+    "no request, response, resource mutation or cache merge performed",
+    "dates supplied on one synthetic integer timeline",
+    "no already-applied exception, ranges or negotiation",
+    "not authorization, atomic update protection or full HTTP conformance"
+  ],
+  "results": [
+    {
+      "id": "no-conditions",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "match-strong",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "match-weak-request",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "PRECONDITION_FAILED",
+      "suggested_status": 412,
+      "reason_codes": [
+        "IF_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "match-weak-current",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "PRECONDITION_FAILED",
+      "suggested_status": 412,
+      "reason_codes": [
+        "IF_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "match-missing-tag",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "PRECONDITION_FAILED",
+      "suggested_status": 412,
+      "reason_codes": [
+        "IF_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "match-star-exists-no-tag",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "match-star-absent",
+      "status": "SUPPORTED",
+      "baseline_status": 201,
+      "evaluation_applicable": true,
+      "outcome": "PRECONDITION_FAILED",
+      "suggested_status": 412,
+      "reason_codes": [
+        "IF_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "empty-opaque-present",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "literal-star-not-wildcard",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "PRECONDITION_FAILED",
+      "suggested_status": 412,
+      "reason_codes": [
+        "IF_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "literal-star-matches",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "opaque-case-sensitive",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "PRECONDITION_FAILED",
+      "suggested_status": 412,
+      "reason_codes": [
+        "IF_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "backslash-literal",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "none-weak-get",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "NOT_MODIFIED",
+      "suggested_status": 304,
+      "reason_codes": [
+        "IF_NONE_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "none-weak-head",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "NOT_MODIFIED",
+      "suggested_status": 304,
+      "reason_codes": [
+        "IF_NONE_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "none-weak-put",
+      "status": "SUPPORTED",
+      "baseline_status": 204,
+      "evaluation_applicable": true,
+      "outcome": "PRECONDITION_FAILED",
+      "suggested_status": 412,
+      "reason_codes": [
+        "IF_NONE_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "none-star-absent-create",
+      "status": "SUPPORTED",
+      "baseline_status": 201,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "none-star-exists-no-tag",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "NOT_MODIFIED",
+      "suggested_status": 304,
+      "reason_codes": [
+        "IF_NONE_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "none-missing-tag",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "unmodified-equality",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "unmodified-fails",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "PRECONDITION_FAILED",
+      "suggested_status": 412,
+      "reason_codes": [
+        "IF_UNMODIFIED_SINCE_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "match-suppresses-date",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "IGNORED_PRECEDENCE"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "earliest-failure",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "PRECONDITION_FAILED",
+      "suggested_status": 412,
+      "reason_codes": [
+        "IF_MATCH_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "FAIL"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "NOT_REACHED"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "NOT_REACHED"
+        }
+      ]
+    },
+    {
+      "id": "modified-equality",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "NOT_MODIFIED",
+      "suggested_status": 304,
+      "reason_codes": [
+        "IF_MODIFIED_SINCE_FAILED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "FAIL"
+        }
+      ]
+    },
+    {
+      "id": "modified-newer",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "none-suppresses-date",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "PASS"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "IGNORED_PRECEDENCE"
+        }
+      ]
+    },
+    {
+      "id": "modified-delete-ignored",
+      "status": "SUPPORTED",
+      "baseline_status": 204,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "IGNORED_METHOD"
+        }
+      ]
+    },
+    {
+      "id": "dates-missing-metadata",
+      "status": "SUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": true,
+      "outcome": "CONTINUE_NORMAL_PROCESSING",
+      "suggested_status": null,
+      "reason_codes": [
+        "ALL_CONDITIONS_PASSED"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "IGNORED_NO_LAST_MODIFIED"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "ABSENT"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "IGNORED_NO_LAST_MODIFIED"
+        }
+      ]
+    },
+    {
+      "id": "baseline-forbidden",
+      "status": "SUPPORTED",
+      "baseline_status": 403,
+      "evaluation_applicable": false,
+      "outcome": "BYPASS_PRECONDITIONS",
+      "suggested_status": 403,
+      "reason_codes": [
+        "NORMAL_CHECKS_TAKE_PRECEDENCE"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "BYPASSED_BASELINE"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "BYPASSED_BASELINE"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "BYPASSED_BASELINE"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "BYPASSED_BASELINE"
+        }
+      ]
+    },
+    {
+      "id": "informational-unsupported",
+      "status": "UNSUPPORTED",
+      "baseline_status": 103,
+      "evaluation_applicable": null,
+      "outcome": "UNSUPPORTED",
+      "suggested_status": null,
+      "reason_codes": [
+        "UNSUPPORTED_INFORMATIONAL_BASELINE"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "UNKNOWN_SCOPE"
+        }
+      ]
+    },
+    {
+      "id": "success-combo-unsupported",
+      "status": "UNSUPPORTED",
+      "baseline_status": 201,
+      "evaluation_applicable": null,
+      "outcome": "UNSUPPORTED",
+      "suggested_status": null,
+      "reason_codes": [
+        "UNSUPPORTED_SUCCESS_CONTEXT"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "UNKNOWN_SCOPE"
+        }
+      ]
+    },
+    {
+      "id": "method-case-unsupported",
+      "status": "UNSUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": null,
+      "outcome": "UNSUPPORTED",
+      "suggested_status": null,
+      "reason_codes": [
+        "UNSUPPORTED_METHOD"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "UNKNOWN_SCOPE"
+        }
+      ]
+    },
+    {
+      "id": "nonascii-tag-unsupported",
+      "status": "UNSUPPORTED",
+      "baseline_status": 200,
+      "evaluation_applicable": null,
+      "outcome": "UNSUPPORTED",
+      "suggested_status": null,
+      "reason_codes": [
+        "UNSUPPORTED_TAG_UNICODE"
+      ],
+      "trace": [
+        {
+          "condition": "if_match",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_unmodified_since",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_none_match",
+          "state": "UNKNOWN_SCOPE"
+        },
+        {
+          "condition": "if_modified_since",
+          "state": "UNKNOWN_SCOPE"
+        }
+      ]
+    }
+  ]
+}

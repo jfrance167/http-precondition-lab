@@ -1,0 +1,783 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "no-conditions",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "match-strong",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "match-weak-request",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": true
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "match-weak-current",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": true
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "match-missing-tag",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": null,
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "match-star-exists-no-tag",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": null,
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": true,
+          "tags": []
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "match-star-absent",
+      "method": "PUT",
+      "baseline_status": 201,
+      "representation": {
+        "exists": false,
+        "etag": null,
+        "last_modified": null
+      },
+      "conditions": {
+        "if_match": {
+          "star": true,
+          "tags": []
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "empty-opaque-present",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "literal-star-not-wildcard",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "*",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "literal-star-matches",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "*",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "*",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "opaque-case-sensitive",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "a",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "backslash-literal",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "a\\b",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "a\\b",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "none-weak-get",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": true
+            }
+          ]
+        },
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "none-weak-head",
+      "method": "HEAD",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": true
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": false
+            }
+          ]
+        },
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "none-weak-put",
+      "method": "PUT",
+      "baseline_status": 204,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": true
+            }
+          ]
+        },
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "none-star-absent-create",
+      "method": "PUT",
+      "baseline_status": 201,
+      "representation": {
+        "exists": false,
+        "etag": null,
+        "last_modified": null
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": {
+          "star": true,
+          "tags": []
+        },
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "none-star-exists-no-tag",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": null,
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": {
+          "star": true,
+          "tags": []
+        },
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "none-missing-tag",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": null,
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": false
+            }
+          ]
+        },
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "unmodified-equality",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": 100,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "unmodified-fails",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": 99,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "match-suppresses-date",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": 99,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "earliest-failure",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "B",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "A",
+              "weak": false
+            }
+          ]
+        },
+        "if_modified_since": 100
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "modified-equality",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": 100
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "modified-newer",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": 99
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "none-suppresses-date",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "B",
+              "weak": false
+            }
+          ]
+        },
+        "if_modified_since": 100
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "modified-delete-ignored",
+      "method": "DELETE",
+      "baseline_status": 204,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": 100
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "dates-missing-metadata",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": null
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": 99,
+        "if_none_match": null,
+        "if_modified_since": 100
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "baseline-forbidden",
+      "method": "GET",
+      "baseline_status": 403,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": {
+          "star": false,
+          "tags": [
+            {
+              "opaque": "B",
+              "weak": false
+            }
+          ]
+        },
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "informational-unsupported",
+      "method": "GET",
+      "baseline_status": 103,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "success-combo-unsupported",
+      "method": "GET",
+      "baseline_status": 201,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "method-case-unsupported",
+      "method": "get",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "A",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    },
+    {
+      "id": "nonascii-tag-unsupported",
+      "method": "GET",
+      "baseline_status": 200,
+      "representation": {
+        "exists": true,
+        "etag": {
+          "opaque": "é",
+          "weak": false
+        },
+        "last_modified": 100
+      },
+      "conditions": {
+        "if_match": null,
+        "if_unmodified_since": null,
+        "if_none_match": null,
+        "if_modified_since": null
+      },
+      "unsupported_features": []
+    }
+  ]
+}

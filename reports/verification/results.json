@@ -1,0 +1,168 @@
+{
+  "runtime": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "checks": [
+    {
+      "name": "tests-normal",
+      "arguments": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "name": "tests-optimized",
+      "arguments": [
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "name": "compile",
+      "arguments": [
+        "-m",
+        "compileall",
+        "-q",
+        "preconditionlab",
+        "tests",
+        "tools"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "name": "bandit",
+      "arguments": [
+        "-m",
+        "bandit",
+        "-r",
+        "preconditionlab",
+        "tests",
+        "tools",
+        "-f",
+        "json"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "name": "strong-as-weak",
+      "arguments": [
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "passed": true
+    },
+    {
+      "name": "ignore-match-precedence",
+      "arguments": [
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "passed": true
+    },
+    {
+      "name": "ignore-none-precedence",
+      "arguments": [
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "passed": true
+    },
+    {
+      "name": "tests-restored",
+      "arguments": [
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "name": "demo-json",
+      "arguments": [
+        "-m",
+        "preconditionlab",
+        "fixtures/cases.json",
+        "--format",
+        "json",
+        "--output",
+        "C:\\Users\\Jake\\OneDrive - Alfred State College\\Documents\\New project\\http-precondition-lab\\reports\\verification\\demo.json"
+      ],
+      "exit_code": 2,
+      "expected_exit": 2,
+      "passed": true
+    },
+    {
+      "name": "demo-markdown",
+      "arguments": [
+        "-m",
+        "preconditionlab",
+        "fixtures/cases.json",
+        "--format",
+        "markdown",
+        "--output",
+        "C:\\Users\\Jake\\OneDrive - Alfred State College\\Documents\\New project\\http-precondition-lab\\reports\\verification\\demo.md"
+      ],
+      "exit_code": 2,
+      "expected_exit": 2,
+      "passed": true
+    }
+  ],
+  "model_restored": true,
+  "hashes": {
+    "preconditionlab\\contracts.py": "5a29af5072db9014aa48d81b76e1df068751410c5fef992a6aaaec8828e941bc",
+    "preconditionlab\\model.py": "02e30ccb61f4b0050a73c251e9b5eba53dfb9d46e6b08a44b2e348e21cd6c2af",
+    "preconditionlab\\report.py": "d679263864671bc49d059807a16321dd0af9514c51577243ddacbf8810b8e150",
+    "preconditionlab\\__init__.py": "537a5eddb1f9261d72cebc7ff40bcf16b5c9344d7f7cf4dbbeb854984b907166",
+    "preconditionlab\\__main__.py": "e950c31266c909bd537aaed0a0e3f51b394d587a5ccb80801ff8bf09aeaede93",
+    "tests\\test_lab.py": "68f344b1a8715cbc12ecd600a608ae9b11aaae7ebd57005c74c1134051d12eb8",
+    "tools\\verify.py": "dbbfabcf71d1a93027e2d82837017591d1819f50093f0d5d4b3133848a584b35",
+    "fixtures\\cases.json": "282b454e2a65584d01374ab535a1afa36769fd8f412712f87a52cf9023c2e646",
+    "fixtures\\expected.json": "7938f9f2a382a239050992feb422e6a573e37c873d39b36beaad1620283828d0",
+    "CONTRACT.md": "20258487e6181396c7a80c480a1598b6f31a7ff306b96fb20a522bd1893a0026"
+  },
+  "passed": true
+}

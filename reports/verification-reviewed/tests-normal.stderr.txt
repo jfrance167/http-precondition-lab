@@ -1,0 +1,30 @@
+test_actual_closed_stdout_exit (test_lab.LabTests.test_actual_closed_stdout_exit) ... ok
+test_api_custom_depth_node_bounds (test_lab.LabTests.test_api_custom_depth_node_bounds) ... ok
+test_api_size_tag_count_and_output_guard (test_lab.LabTests.test_api_size_tag_count_and_output_guard) ... ok
+test_baseline_redirect_and_error_bypass (test_lab.LabTests.test_baseline_redirect_and_error_bypass) ... ok
+test_cli_status_alias_existing_and_invalid_no_output (test_lab.LabTests.test_cli_status_alias_existing_and_invalid_no_output) ... ok
+test_complete_strong_weak_pairs (test_lab.LabTests.test_complete_strong_weak_pairs) ... ok
+test_empty_literal_star_and_backslash (test_lab.LabTests.test_empty_literal_star_and_backslash) ... ok
+test_exclusive_file (test_lab.LabTests.test_exclusive_file) ... ok
+test_feature_bounds_and_scope_reasons (test_lab.LabTests.test_feature_bounds_and_scope_reasons) ... ok
+test_forbidden_capabilities (test_lab.LabTests.test_forbidden_capabilities) ... ok
+test_frozen_bytes (test_lab.LabTests.test_frozen_bytes) ... ok
+test_frozen_labels (test_lab.LabTests.test_frozen_labels) ... ok
+test_informational_baselines_never_completed (test_lab.LabTests.test_informational_baselines_never_completed) ... ok
+test_invalid_later_data_never_masked (test_lab.LabTests.test_invalid_later_data_never_masked) ... ok
+test_json_decoder_bounds (test_lab.LabTests.test_json_decoder_bounds) ... ok
+test_no_mutation_or_result_alias (test_lab.LabTests.test_no_mutation_or_result_alias) ... ok
+test_nonascii_is_scope_not_normalization (test_lab.LabTests.test_nonascii_is_scope_not_normalization) ... ok
+test_output_short_flush_close_cleanup_errors (test_lab.LabTests.test_output_short_flush_close_cleanup_errors) ... ok
+test_report_inert_complete_trace (test_lab.LabTests.test_report_inert_complete_trace) ... ok
+test_schema_and_exact_types (test_lab.LabTests.test_schema_and_exact_types) ... ok
+test_snapshot_contradiction_even_unsupported (test_lab.LabTests.test_snapshot_contradiction_even_unsupported) ... ok
+test_tag_missing_vs_existence (test_lab.LabTests.test_tag_missing_vs_existence) ... ok
+test_tag_shapes_duplicates_and_character_rules (test_lab.LabTests.test_tag_shapes_duplicates_and_character_rules) ... ok
+test_trace_precedence_method_metadata_priority (test_lab.LabTests.test_trace_precedence_method_metadata_priority) ... ok
+test_trace_priority_after_failure (test_lab.LabTests.test_trace_priority_after_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.939s
+
+OK
